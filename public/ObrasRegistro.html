@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Obras</title>
+    <link rel="stylesheet" href="./Style/Styles2.css">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');</style>
+</head>
+<body class="Registro-Obras">
+    <div class="contenedor-principal">
+        <div class="tarjeta-formulario">
+            <h1 class="titulo-formulario">Registro de Obras</h1>
+            <hr class="separador-titulo">
+
+            <form class="formulario">
+                
+                <div class="grupo-campo">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" name="titulo" value="Texto">
+                </div>
+                
+                <div class="grupo-campo">
+                    <label for="autor">Autor</label>
+                    <select id="autor" name="autor">
+                        <option value="multiselecto">Seleccione Autor</option>
+                    </select>
+                </div>
+                
+                <div class="grupo-campo grupo-doble">
+                    <label for="anio">Año</label>
+                    <div class="contenedor-input-doble">
+                        <span class="label-doble">Año</span>
+                        <input type="text" id="anio" name="anio" value="XXXX">
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria">
+                        <option value="" disabled selected>Categoría</option>
+                    </select>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción">
+                </div>
+
+                <div class="grupo-campo grupo-doble">
+                    <label for="ubicacion">Ubicación</label>
+                    <div class="contenedor-input-doble">
+                        <span class="label-doble">Localizacion</span>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="">
+                    </div>
+                </div>
+
+                <!-- --- 1. ASOCIACIÓN DE AUTORES (MULTISELECT) --- -->
+                <div class="seccion-adicional">
+                    <h2 class="subtitulo-seccion">Asociación de Autores</h2>
+                    <div class="grupo-campo">
+                        <label for="autores-asociados">Añadir Autor(es)</label>
+                        <select id="autores-asociados" name="autores-asociados">
+                            <option value="" disabled selected>Seleccione autores...</option>
+                            <!-- Opciones de ejemplo, se cargarían dinámicamente -->
+                        </select>
+                    </div>
+                    <!-- Contenedor para la lista de autores seleccionados (tags) -->
+                    <div class="autores-seleccionados-tags">
+                        
+                    </div>
+                </div>
+
+                <!-- --- 2. ETIQUETAS (TAGS) --- -->
+                <div class="seccion-adicional">
+                    <h2 class="subtitulo-seccion">Etiquetas (Tags)</h2>
+                    <div class="contenedor-tags">
+                        <!-- Tags de ejemplo -->
+                        <!-- Input para añadir nuevos tags -->
+                        <input type="text" class="input-tag" placeholder="Añadir nueva etiqueta">
+                    </div>
+                </div>
+                
+                <!-- --- 3. MULTIMEDIA (PESTAÑAS) --- -->
+                <div class="seccion-adicional seccion-multimedia">
+                    <h2 class="subtitulo-seccion">Gestión de Multimedia</h2>
+
+                    <div class="tabs-contenedor">
+                        <button type="button" class="tab-btn activa">Imágenes</button>
+                        <button type="button" class="tab-btn">Videos</button>
+                        <button type="button" class="tab-btn">Documentos</button>
+                    </div>
+
+                    <!-- Contenido de la pestaña activa -->
+                    <div class="tab-contenido-cuerpo">
+                        
+                        <!-- PESTAÑA: IMÁGENES -->
+                        <div id="tab-imagenes" class="tab-panel activo">
+                            <h3 class="titulo-gestion">Galería de Imágenes</h3>
+                            <div class="upload-area">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8"></path><polyline points="18 10 12 4 6 10"></polyline></svg>
+                                <p class="upload-text">Subir imágenes (PNG, JPG)</p>
+                            </div>
+                        </div>
+
+                        <!-- PESTAÑA: VIDEOS -->
+                        <div id="tab-videos" class="tab-panel">
+                            <h3 class="titulo-gestion">Gestión de Videos</h3>
+                            <div class="grupo-campo">
+                                <label for="video-url">Vincular Video</label>
+                                <div class="contenedor-input-accion">
+                                    <input type="url" id="video-url" placeholder="Pegar enlace del video (URL)">
+                                    <button type="button" class="boton-accion-secundaria boton-vincular">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                        Vincular
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Aquí iría la lista de videos vinculados -->
+                        </div>
+
+                        <!-- PESTAÑA: DOCUMENTOS -->
+                        <div id="tab-documentos" class="tab-panel">
+                            <h3 class="titulo-gestion">Gestión de Documentos</h3>
+                            <div class="upload-area">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8"></path><polyline points="18 10 12 4 6 10"></polyline></svg>
+                                <p class="upload-text">Arrasta o haz clic para subir documentos (PDF, DOCX, TXT. Max 10MB)</p>
+                            </div>
+                            <h3 class="subtitulo-archivos">Documentos Asociados</h3>
+                            <div class="lista-archivos-adjuntos">
+                                <!-- Elementos de archivos de ejemplo -->
+                                <div class="archivo-item">
+                                    <span class="icon-file icon-pdf">📄</span>
+                                    <span class="nombre-archivo">Bioagrrgia_Autor.pdf</span>
+                                    <div class="acciones-archivo">
+                                        <a href="#" class="link-accion">Ver</a>
+                                        <a href="#" class="link-accion">Descargar</a>
+                                    </div>
+                                </div>
+                                <div class="archivo-item">
+                                    <span class="icon-file icon-docx">📄</span>
+                                    <span class="nombre-archivo">Analisis_Tecnico_Obra_.docx</span>
+                                    <div class="acciones-archivo">
+                                        <a href="#" class="link-accion">Ver</a>
+                                        <a href="#" class="link-accion">Descargar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <button type="submit" class="boton-registro">
+                    Registrar Obra
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

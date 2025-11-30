@@ -1,0 +1,529 @@
+/* =========================================
+   1. CONFIGURACIÓN BASE Y GLOBALES
+   ========================================= */
+* {
+    box-sizing: border-box; /* Vital para que el padding no rompa el ancho */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9; /* Gris suave profesional */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Enlaces generales */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   2. BARRA DE NAVEGACIÓN (SUPERIOR)
+   ========================================= */
+.Superior {
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 100;
+}
+
+/* Logo */
+.Logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 150px; /* Ancho fijo para control */
+}
+
+.Logito {
+    max-height: 60px;
+    width: auto;
+}
+
+/* Menú */
+.Menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Menucito {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.Menucito li a {
+    color: #4a7c59; /* Verde Corporativo */
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.Menucito li a:hover {
+    background-color: #4a7c59;
+    color: white;
+}
+
+/* Icono Usuario */
+.User-Circle {
+    background-color: #4a7c59;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.User-Circle:hover {
+    transform: scale(1.1);
+    background-color: #3b6448;
+}
+
+/* =========================================
+   3. ESTILOS GENERALES DE CONTENEDORES
+   ========================================= */
+.contenedor-principal-listado, 
+.contenedor-perfil {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-listado {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* =========================================
+   4. BARRA DE BÚSQUEDA (RF-18)
+   ========================================= */
+.barra-busqueda {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.input-buscar {
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.input-buscar:focus {
+    border-color: #4a7c59;
+}
+
+.boton-buscar {
+    padding: 12px 30px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton-buscar:hover {
+    background-color: #1a252f;
+}
+
+/* =========================================
+   5. TARJETAS Y GRID (Shared Styles)
+   ========================================= */
+/* Grid Flexible */
+.contenedor-obras, 
+.contenedor-autores, 
+.grid-obras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Tarjeta Base */
+.tarjeta-obra, 
+.tarjeta-autor,
+.card-obra-mini {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    width: 280px; /* Ancho estándar */
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-obra:hover, 
+.tarjeta-autor:hover,
+.card-obra-mini:hover {
+    transform: translateY(-8px);
+}
+
+/* Imágenes en tarjetas */
+.imagen-obra img, 
+.card-obra-mini img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Información en tarjetas */
+.info-obra, 
+.info-obra-mini {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-obra, 
+.nombre-autor,
+.info-obra-mini h4 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.detalle-obra, 
+.bio-autor,
+.info-obra-mini span {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.boton-ver, 
+.boton-ver-detalle {
+    margin-top: auto;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Estilos específicos Autor (Foto redonda) */
+.tarjeta-autor {
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.foto-autor {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   6. PERFIL DE AUTOR (RF-17)
+   ========================================= */
+.contenedor-perfil {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.encabezado-perfil {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+}
+
+.foto-perfil-grande {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #2c3e50;
+}
+
+.info-perfil h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+}
+
+.bio-completa {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.seccion-obras h2 {
+    color: #2c3e50;
+    border-left: 5px solid #4a7c59;
+    padding-left: 15px;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   7. FORMULARIOS (Registro/Login)
+   ========================================= */
+.cuerpo-registro-autor, 
+.Registro-Obras, 
+#Cuerpo_Registro {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9ecef; /* Fondo neutro para formularios */
+    padding: 20px;
+}
+
+.tarjeta-formulario, 
+.tarjeta-autor, 
+.caja-login {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.grupo-campo {
+    margin-bottom: 20px;
+}
+
+.grupo-campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="text"], 
+input[type="password"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+.boton-registro, 
+.boton-registro-autor {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a7c59;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* =========================================
+   8. DETALLE DE OBRA
+   ========================================= */
+.cuerpo-detalle-obra {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.tarjeta-detalle {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+.titulo-principal-obra {
+    text-align: center;
+    color: #4a7c59;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.autor-obra {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   9. MODO OSCURO (RF-20)
+   ========================================= */
+body.modo-oscuro {
+    background-color: #121212 !important;
+    color: #e0e0e0;
+}
+
+/* Header Oscuro */
+body.modo-oscuro .Superior {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+body.modo-oscuro .Menucito li a {
+    color: #a5d6a7; /* Verde más claro */
+}
+
+/* Tarjetas Oscuras */
+body.modo-oscuro .tarjeta-obra,
+body.modo-oscuro .tarjeta-autor,
+body.modo-oscuro .card-obra-mini,
+body.modo-oscuro .contenedor-perfil,
+body.modo-oscuro .tarjeta-detalle,
+body.modo-oscuro .tarjeta-formulario {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* Textos Oscuros */
+body.modo-oscuro .titulo-listado,
+body.modo-oscuro .titulo-obra,
+body.modo-oscuro .nombre-autor,
+body.modo-oscuro .info-perfil h1,
+body.modo-oscuro .seccion-obras h2 {
+    color: #ffffff;
+}
+
+body.modo-oscuro .detalle-obra,
+body.modo-oscuro .bio-autor,
+body.modo-oscuro .bio-completa {
+    color: #b0b0b0;
+}
+
+/* Inputs en Oscuro */
+body.modo-oscuro input,
+body.modo-oscuro select,
+body.modo-oscuro textarea {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: white;
+}
+
+/* Botón flotante Luna/Sol */
+.btn-tema {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.2s;
+}
+
+.btn-tema:hover {
+    transform: scale(1.1);
+}
+
+body.modo-oscuro .btn-tema {
+    background-color: #f1c40f; /* Amarillo sol */
+    color: #333;
+}
+
+/* Responsive básico */
+@media (max-width: 768px) {
+    .Superior {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+    .Menu {
+        margin-top: 10px;
+    }
+    .encabezado-perfil {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* =========================================
+   PARCHE FINAL: ARREGLO DETALLE OBRA
+   ========================================= */
+
+/* 1. Forzar que los elementos se apilen verticalmente (Menú arriba, Tarjeta abajo) */
+.cuerpo-detalle-obra {
+    flex-direction: column !important; /* Vital: Cambia de fila a columna */
+    justify-content: flex-start !important; /* Empieza desde arriba, no desde el centro */
+    padding-top: 0 !important; /* Quitamos padding superior para que el menú toque el borde */
+}
+
+/* 2. Ajuste del Menú en esta página específica */
+.cuerpo-detalle-obra .Superior {
+    flex-shrink: 0; /* Evita que el menú se aplaste */
+    width: 100%;
+}
+
+/* 3. Ajuste de la Tarjeta para que no se pegue al menú */
+.tarjeta-detalle {
+    margin-top: 50px; /* Espacio entre menú y tarjeta */
+    margin-bottom: 50px;
+}
+
+/* 4. Arreglar imagen rota o muy grande */
+.imagen-principal-obra {
+    background-color: #ddd; /* Fondo gris si no carga imagen */
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-responsive {
+    max-height: 400px; /* Que no sea gigante */
+    object-fit: contain; /* Que se vea la imagen completa */
+}

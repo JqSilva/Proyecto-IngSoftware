@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Obra</title>
+    <link rel="stylesheet" href="Style/Styles2.css">
+    <style>
+        /* Estilos específicos para la descarga (RF-19) */
+        .boton-descargar {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #4a7c59;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+        .boton-descargar:hover {
+            background-color: #3b6448;
+        }
+        .texto-sin-archivos {
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body class="cuerpo-detalle-obra">
+    
+    <div class="Superior">
+        <div class="Logo">
+            <img src="Style/Imagenes/Logo.png" alt="Logo" class="Logito">
+        </div>
+        <div class="Menu">
+            <ul class="Menucito">
+                <li><a href="ObrasMis.html"> Mis Obras </a></li>
+                <li><a href="Obras.html"> Obras </a></li>
+                <li><a href="Autores.html"> Autores </a></li>
+                <li class="Icono-Usuario"><a href="#"><span class="User-Circle">👤</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tarjeta-detalle">
+        
+        <div class="encabezado-detalle">
+            <h1 class="titulo-principal-obra" id="titulo-obra">Cargando título...</h1>
+            <p class="autor-obra" id="autor-obra">Cargando autor...</p>
+        </div>
+
+        <div class="contenido-principal">
+            
+            <div class="media-container">
+                <div class="imagen-principal-obra">
+                    <img id="img-principal" src="" alt="Obra Principal" class="img-responsive">
+                </div>
+            </div>
+
+            <div class="info-adicional-container">
+                
+                <div class="grupo-info">
+                    <h3 class="subtitulo-info">Descripción</h3>
+                    <p class="texto-descripcion" id="desc-obra">
+                        Cargando descripción...
+                    </p>
+                </div>
+                
+                <div class="grupo-info">
+                    <h3 class="subtitulo-info">Archivos y Descargas</h3>
+                    <div id="lista-descargas">
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/detalle.js"></script>
+    <script src="Scripts/tema.js"></script>
+</body>
+</html>

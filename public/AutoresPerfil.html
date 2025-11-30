@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Autor</title>
+    <link rel="stylesheet" href="Style/Styles2.css">
+</head>
+
+<body>
+    <div class="Superior">
+        <div class="Logo">
+            <img src="Style/Imagenes/Logo.png" alt="Logo" class="Logito">
+        </div>
+
+        <div class="Menu">
+            <ul class="Menucito">
+                <li><a href="ObrasMis.html"> Mis Obras </a></li>
+                <li><a href="Obras.html"> Obras </a></li>
+                <li><a href="Autores.html"> Autores </a></li>
+                <li class="Icono-Usuario">
+                    <a href="#">
+                        <span class="User-Circle">👤</span> 
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="loading" style="text-align:center; color:white; margin-top:50px; font-size: 1.2rem;">
+        Cargando perfil...
+    </div>
+
+    <div id="contenido-perfil" class="contenedor-perfil" style="display:none;">
+        
+        <div class="encabezado-perfil">
+            <img id="img-autor" src="" alt="Foto Autor" class="foto-perfil-grande">
+            
+            <div class="info-perfil">
+                <h1 id="nombre-autor">Nombre del Autor</h1>
+                <p id="bio-autor" class="bio-completa">Biografía...</p>
+            </div>
+        </div>
+
+        <div class="seccion-obras">
+            <h2>Obras Relacionadas</h2>
+            <div id="lista-obras" class="grid-obras"></div>
+        </div>
+    </div>
+
+    <script src="Scripts/autores.js"></script>
+    <script src="Scripts/tema.js"></script>
+</body>
+</html>
