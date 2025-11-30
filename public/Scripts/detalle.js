@@ -14,53 +14,76 @@ async function cargarDetalleObra() {
         if (!respuesta.ok) throw new Error('Error al cargar la obra');
         const obra = await respuesta.json();
 
-        // --- 1. Rellenar Textos (Con protección contra 'undefined') ---
+        // 1. Textos Básicos
         document.getElementById('titulo-obra').innerText = obra.titulo || "Sin Título";
-        
         const nombreAutor = (obra.autor && obra.autor.nombre) ? obra.autor.nombre : 'Autor Desconocido';
         document.getElementById('autor-obra').innerText = `Por ${nombreAutor}`;
+        document.getElementById('desc-obra').innerText = obra.descripcion || "No hay descripción disponible.";
+
+        // 2. Imagen Principal
+        const imgPrincipal = document.getElementById('img-principal');
+        const imagenes = obra.imagenes || [];
         
-        // Aquí corregimos el 'undefined': Buscamos descripción O description O un texto por defecto
-        document.getElementById('desc-obra').innerText = obra.descripcion || obra.description || "No hay descripción disponible para esta obra.";
-        
-        // --- 2. Imagen Principal ---
-        const imgElement = document.getElementById('img-principal');
-        if (obra.imagenes && obra.imagenes.length > 0) {
-            imgElement.src = obra.imagenes[0];
+        if (imagenes.length > 0) {
+            imgPrincipal.src = imagenes[0]; // Poner la primera por defecto
         } else {
-            // Imagen por defecto si no hay ninguna
-            imgElement.src = "https://via.placeholder.com/600x400?text=Sin+Imagen"; 
+            imgPrincipal.src = "https://via.placeholder.com/600x400?text=Sin+Imagen";
         }
 
-        // --- 3. RF-19: Descargas ---
+        // 3. GALERÍA (RF-7)
+        const contenedorGaleria = document.getElementById('galeria-miniaturas');
+        if (imagenes.length > 1) {
+            contenedorGaleria.style.display = 'flex';
+            contenedorGaleria.innerHTML = ''; // Limpiar
+
+            imagenes.forEach(urlImg => {
+                const thumb = document.createElement('img');
+                thumb.src = urlImg;
+                thumb.className = 'thumb-img';
+                
+                // Evento: Al hacer clic, cambiar la principal
+                thumb.addEventListener('click', () => {
+                    imgPrincipal.src = urlImg;
+                });
+                
+                contenedorGaleria.appendChild(thumb);
+            });
+        }
+
+        // 4. MULTIMEDIA / VIDEO (RF-7)
+        const divVideo = document.getElementById('contenedor-video');
+        const iframe = document.getElementById('frame-video');
+
+        if (obra.video) {
+            divVideo.style.display = 'block';
+            iframe.src = obra.video;
+        }
+
+        // 5. ARCHIVOS (RF-7)
         const contenedorDescargas = document.getElementById('lista-descargas');
         contenedorDescargas.innerHTML = ''; 
-
-        // TRUCO: Si no hay archivos reales, inventamos uno para probar el botón (RF-19)
-        let archivos = [...(obra.documentos || []), ...(obra.adjuntos || [])];
         
-        if (archivos.length === 0) {
-            // Agregamos un archivo de prueba visual
-            archivos.push({ nombre: "Ficha_Tecnica_Ejemplo.pdf", url: "#" });
-        }
+        // Unificar adjuntos si vienen de diferentes campos
+        let archivos = [...(obra.documentos || [])];
 
-        archivos.forEach(archivo => {
-            const item = document.createElement('div');
-            item.className = 'linea-archivo';
-            item.style.padding = "15px 0"; // Un poco más de aire
-            
-            item.innerHTML = `
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span style="font-size:1.5rem;">📄</span>
-                    <span class="nombre-archivo">${archivo.nombre || 'Documento disponible'}</span>
-                </div>
-                <a href="${archivo.url}" target="_blank" class="boton-descargar" download>
-                    Descargar
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                </a>
-            `;
-            contenedorDescargas.appendChild(item);
-        });
+        if (archivos.length === 0) {
+            contenedorDescargas.innerHTML = '<p class="texto-sin-archivos">No hay archivos adjuntos.</p>';
+        } else {
+            archivos.forEach(archivo => {
+                const item = document.createElement('div');
+                item.className = 'linea-archivo';
+                item.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:1.5rem;">📄</span>
+                        <span class="nombre-archivo">${archivo.nombre || 'Archivo'}</span>
+                    </div>
+                    <a href="${archivo.url}" target="_blank" class="boton-descargar" download>
+                        Descargar
+                    </a>
+                `;
+                contenedorDescargas.appendChild(item);
+            });
+        }
 
     } catch (error) {
         console.error(error);

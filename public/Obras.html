@@ -24,7 +24,7 @@
     </div>
 
     <div class="contenedor-principal-listado">
-        <h1 class="titulo-listado" style="text-align:center; color:white; margin-top:20px;">Catálogo de Obras</h1>
+        <h1 class="titulo-listado" style="text-align:center; margin-top:20px;">Catálogo de Obras</h1>
 
         <div class="barra-busqueda">
             <input type="text" id="input-buscar" class="input-buscar" placeholder="Buscar por título, categoría...">
@@ -32,6 +32,13 @@
         </div>
 
         <div class="contenedor-obras"></div>
+
+        <div id="controles-paginacion" class="paginacion-container">
+            <button id="btn-ant" class="btn-nav">« Anterior</button>
+            <span id="info-pagina">Cargando...</span>
+            <button id="btn-sig" class="btn-nav">Siguiente »</button>
+        </div>
+
     </div>
 
     <script src="Scripts/obras.js"></script>

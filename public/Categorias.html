@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Categorías</title>
+    <link rel="stylesheet" href="Style/Styles2.css">
+    <style>
+        /* Estilos específicos para esta tabla de gestión */
+        .contenedor-gestion { max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .form-inline { display: flex; gap: 10px; margin-bottom: 20px; align-items: flex-end; }
+        .input-gestion { flex-grow: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .tabla-categorias { width: 100%; border-collapse: collapse; }
+        .tabla-categorias th, .tabla-categorias td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .btn-accion { padding: 5px 10px; border-radius: 4px; cursor: pointer; border: none; font-weight: bold; margin-right: 5px; }
+        .btn-editar { background: #f39c12; color: white; }
+        .btn-borrar { background: #c0392b; color: white; }
+        .mensaje-error { color: #c0392b; background: #fadbd8; padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="Superior">
+        <div class="Logo"><img src="Style/Imagenes/Logo.png" class="Logito"></div>
+        <div class="Menu">
+            <ul class="Menucito">
+                <li><a href="Obras.html">Obras</a></li>
+                <li><a href="Categorias.html" style="color:#2c3e50; border-bottom: 2px solid #2c3e50;">Categorías</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="contenedor-gestion">
+        <h1 style="color:#2c3e50;">Gestión de Categorías</h1>
+        
+        <div id="alerta-error" class="mensaje-error"></div>
+
+        <div class="form-inline">
+            <input type="hidden" id="cat-id">
+            <div style="flex-grow:1">
+                <label>Nombre</label>
+                <input type="text" id="cat-nombre" class="input-gestion" placeholder="Ej: Surrealismo">
+            </div>
+            <div style="flex-grow:2">
+                <label>Descripción</label>
+                <input type="text" id="cat-desc" class="input-gestion" placeholder="Descripción breve...">
+            </div>
+            <button id="btn-guardar" class="boton-registro-autor" style="width:auto; margin:0;">Guardar</button>
+            <button id="btn-cancelar" class="boton-cancelar" style="width:auto; display:none;">Cancelar</button>
+        </div>
+
+        <table class="tabla-categorias">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th style="text-align:right;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="lista-cats">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="Scripts/categorias.js"></script>
+</body>
+</html>
